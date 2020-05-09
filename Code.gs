@@ -10,8 +10,8 @@ function fetchCovidData(country, province){
   
   // Check to see the country input is valid
   for (i in pool) {
-    if (pool[i]['Slug'] === country){
-      var response = UrlFetchApp.fetch("https://api.covid19api.com/live/country/" +country+ "/status/confirmed");
+    if (pool[i]['Country'] === country){
+      var response = UrlFetchApp.fetch("https://api.covid19api.com/live/country/" +pool[i]['Slug']+ "/status/confirmed");
     }
   }
   
