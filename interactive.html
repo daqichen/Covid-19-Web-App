@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 15px;
+        text-align: left;
+      }
+    </style>
+    
+    
+  </head>
+  <body>
+    <h1> Live Covid-19 Stats </h1>
+    
+    <form>
+      <label for="country">Country:</label><br>
+      <input type="text" id="coun" name="country"><br>
+      <label for="prov">Province/State:</label><br>
+      <input type="text" id="prov" name="province">
+    </form>
+    
+    <br>
+    
+    <br>
+    <div id="myTable">
+      <input type="button" id="create" value="Click here" onclick="Javascript:fetchCovidData()">
+      to create a Table and add some data using JavaScript
+    </div>
+    
+    <div id = "table"></div>
+
+    
+    <script type="text/javascript">
+      function fetchCovidData(){
+        var country = document.getElementById("coun").value;
+        var province = document.getElementById("prov").value;
+        var data = google.script.run
+        .withSuccessHandler(function(chart){
+          var result = "<table>";
+          
+          for(var i=0; i<chart.length; i++) {
+            result += "<tr>";
+            for(var j=0; j<chart[i].length; j++){
+              result += "<td>"+chart[i][j]+"</td>";
+            }
+            result += "</tr>";
+          }
+            result += "</table>";
+          
+          document.getElementById("table").innerHTML = result;
+        })
+        
+        .withFailureHandler(function(err){
+          console.log(err);
+        })
+        
+        .fetchCovidData(country, province);
+      }
+            
+      function makeTableHTML(){
+        google.script.run
+        .makeTableHTML();
+      }
+      
+      function setTable(data) {
+        var div = document.getElementById('output');
+        div.innerHTML = createTable(data);
+      }
+      
+      
+    </script>
+    
+  </body>
+</html>
+
+
