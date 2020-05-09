@@ -50,34 +50,36 @@ function fetchCovidData(country, province){
    }
    chart[1] = ['Confirmed','Deaths','Active','Date'];
    for (i in list){
-     chart.push([list[i]['Confirmed'],list[i]['Deaths'],list[i]['Active'],list[i]['Date']]);
+     chart.push([list[i]['Confirmed'],list[i]['Deaths'],list[i]['Active'],reformat(list[i]['Date'])]);
    }   
  }
   
  return chart;
-  
-    
-   
 }
 
-function makeTableHTML() {
-    var myTableDiv = document.getElementById("myTable");
-    var table = document.createElement('TABLE');
-    table.border='1';
-    
-    var tableBody = document.createElement('TBODY');
-    table.appendChild(tableBody);
-      
-    for (var i=0; i<3; i++){
-       var tr = document.createElement('TR');
-       tableBody.appendChild(tr);
-       
-       for (var j=0; j<4; j++){
-           var td = document.createElement('TD');
-           td.width='75';
-           td.appendChild(document.createTextNode("Cell " + i + "," + j));
-           tr.appendChild(td);
-       }
-    }
-    myTableDiv.appendChild(table);
+function reformat(sth) {
+  var temp = sth.split("T");
+  return temp[0];
 }
+
+//function makeTableHTML() {
+//    var myTableDiv = document.getElementById("myTable");
+//    var table = document.createElement('TABLE');
+//    table.border='1';
+//    
+//    var tableBody = document.createElement('TBODY');
+//    table.appendChild(tableBody);
+//      
+//    for (var i=0; i<3; i++){
+//       var tr = document.createElement('TR');
+//       tableBody.appendChild(tr);
+//       
+//       for (var j=0; j<4; j++){
+//           var td = document.createElement('TD');
+//           td.width='75';
+//           td.appendChild(document.createTextNode("Cell " + i + "," + j));
+//           tr.appendChild(td);
+//       }
+//    }
+//    myTableDiv.appendChild(table);
+//}
