@@ -11,21 +11,20 @@ to access ["Live By Country And Status (e.g. South Africa)"](https://api.covid19
 ### [Go to JavaScript code](https://github.com/daqichen/Covid-19-Web-App/blob/master/Code.gs)
 ```
 fetchCovidData(country, province)
-/* Function takes in the country name and look up the "Slug" name 
- * for directing to specific API site.
- *
- * Then parse the retrieved data in JSON into a 2D array, or "chart"
- */
 ```
+Function takes in the country name and look up the "Slug" name for directing to specific API site.
+
+Then parse the retrieved data in JSON into a 2D array, or "chart"
+ 
 ### [Go to HTML code](https://github.com/daqichen/Covid-19-Web-App/blob/master/interactive.html)
 Within <script> </script>
 Call function ```fetchCovidData()``` using
 ```
 google.script.run()
-
-// When Success: 
-// Use SuccessHandler and convert the resulting 2D Array into html table
-
+```
+When Success: 
+Use SuccessHandler and convert the resulting 2D Array into html table
+```
 var result = "<table>";
 for(var i=0; i<chart.length; i++) {
    result += "<tr>";
